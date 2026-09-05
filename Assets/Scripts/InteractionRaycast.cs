@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
 public class InteractionRaycast : MonoBehaviour
 {
     [Header("Interaction")]
@@ -12,6 +13,8 @@ public class InteractionRaycast : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject interactionUI;
 
+    private IInteractable currentInteractable;
+
     private void Update()
     {
         CheckForInteractable();
@@ -19,15 +22,10 @@ public class InteractionRaycast : MonoBehaviour
 
     private void CheckForInteractable()
     {
-        if (playerCamera == null)
-        {
-            Debug.LogWarning("InteractionRaycast: Chưa gán Player Camera.");
-            return;
-        }
+        currentInteractable = null;
 
-        if (interactionUI == null)
+        if (playerCamera == null || interactionUI == null)
         {
-            Debug.LogWarning("InteractionRaycast: Chưa gán Interaction UI.");
             return;
         }
 
@@ -38,13 +36,15 @@ public class InteractionRaycast : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, interactionDistance))
         {
-            if (hit.collider.CompareTag("Interactable"))
+            currentInteractable = hit.collider.GetComponent<IInteractable>();
+
+            if (currentInteractable != null)
             {
                 interactionUI.SetActive(true);
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    Interact(hit.collider.gameObject);
+                    currentInteractable.Interact();
                 }
 
                 return;
@@ -52,10 +52,5 @@ public class InteractionRaycast : MonoBehaviour
         }
 
         interactionUI.SetActive(false);
-    }
-
-    private void Interact(GameObject target)
-    {
-        Debug.Log("Đã tương tác với: " + target.name);   
     }
 }
