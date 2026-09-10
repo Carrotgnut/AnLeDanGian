@@ -918,7 +918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1207363436
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1019,6 +1019,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueManager: {fileID: 1674340659}
   startDialogueId: ch1_001
+  animator: {fileID: 0}
 --- !u!1 &1652840343
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,6 +1183,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 668431f321dbc1c4990c4921dae0cb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDialogueEnded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7684060593112889957}
+        m_TargetAssemblyTypeName: NPCDialogue, Assembly-CSharp
+        m_MethodName: StopTalking
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   dialogueJson: {fileID: 4900000, guid: de3557ba36af98c4d93933567e23706a, type: 3}
   dialoguePanel: {fileID: 798672657}
   speakerText: {fileID: 1966350227}
@@ -1489,6 +1505,119 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140668592}
   m_CullTransparentMesh: 1
+--- !u!1001 &1828213413414908520
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4944676321452019299, guid: 5723b3efe9bcdb14187282fd2928fbbc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4944676321452019299, guid: 5723b3efe9bcdb14187282fd2928fbbc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4944676321452019299, guid: 5723b3efe9bcdb14187282fd2928fbbc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 4944676321452019299, guid: 5723b3efe9bcdb14187282fd2928fbbc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.06250775
+      objectReference: {fileID: 0}
+    - target: {fileID: 4944676321452019299, guid: 5723b3efe9bcdb14187282fd2928fbbc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4944676321452019299, guid: 5723b3efe9bcdb14187282fd2928fbbc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.99804455
+      objectReference: {fileID: 0}
+    - target: {fileID: 4944676321452019299, guid: 5723b3efe9bcdb14187282fd2928fbbc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4944676321452019299, guid: 5723b3efe9bcdb14187282fd2928fbbc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4944676321452019299, guid: 5723b3efe9bcdb14187282fd2928fbbc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 172.832
+      objectReference: {fileID: 0}
+    - target: {fileID: 4944676321452019299, guid: 5723b3efe9bcdb14187282fd2928fbbc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9038199818216995439, guid: 5723b3efe9bcdb14187282fd2928fbbc, type: 3}
+      propertyPath: m_Name
+      value: NPC_CongNhan
+      objectReference: {fileID: 0}
+    - target: {fileID: 9038199818216995439, guid: 5723b3efe9bcdb14187282fd2928fbbc, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9038199818216995439, guid: 5723b3efe9bcdb14187282fd2928fbbc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7684060593112889957}
+    - targetCorrespondingSourceObject: {fileID: 9038199818216995439, guid: 5723b3efe9bcdb14187282fd2928fbbc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7684060593112889956}
+  m_SourcePrefab: {fileID: 100100000, guid: 5723b3efe9bcdb14187282fd2928fbbc, type: 3}
+--- !u!95 &4342429576214863897 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1844873848766975523, guid: 5723b3efe9bcdb14187282fd2928fbbc, type: 3}
+  m_PrefabInstance: {fileID: 1828213413414908520}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7055052408889696473 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9038199818216995439, guid: 5723b3efe9bcdb14187282fd2928fbbc, type: 3}
+  m_PrefabInstance: {fileID: 1828213413414908520}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &7684060593112889956
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7055052408889696473}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.29658976, y: 1.5664299, z: 0.37108508}
+  m_Center: {x: -0.0015954674, y: 0.9163878, z: 0.037840083}
+--- !u!114 &7684060593112889957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7055052408889696473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9bdb5cfdf2cc5e45956e502875468e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 1674340659}
+  startDialogueId: ch1_001
+  animator: {fileID: 4342429576214863897}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1503,3 +1632,4 @@ SceneRoots:
   - {fileID: 600254666}
   - {fileID: 798998058}
   - {fileID: 1674340660}
+  - {fileID: 1828213413414908520}

@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DialogueManager : MonoBehaviour
 {
+   
+    [Header("Events")]
+    [SerializeField] private UnityEvent onDialogueEnded;
     [Serializable]
     public class DialogueLine
     {
@@ -173,7 +177,10 @@ public class DialogueManager : MonoBehaviour
     {
         currentLine = null;
         isDialogueActive = false;
+
         HideDialogue();
+
+        onDialogueEnded?.Invoke();
 
         Debug.Log("Kết thúc dialogue.");
     }
