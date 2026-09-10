@@ -1,0 +1,22 @@
+{
+    "dialogues": [
+        {
+            "id": "ch1_001",
+            "speaker": "Công nhân",
+            "text": "Ê, mày có nghe chuyện hai làng Sặt với Đồng Kỵ không?",
+            "nextId": "ch1_002"
+        },
+        {
+            "id": "ch1_002",
+            "speaker": "Công nhân",
+            "text": "Nghe bảo trai làng này không được lấy gái làng kia đâu...",
+            "nextId": "ch1_003"
+        },
+        {
+            "id": "ch1_003",
+            "speaker": "Công nhân",
+            "text": "...",
+            "nextId": ""
+        }
+    ]
+}

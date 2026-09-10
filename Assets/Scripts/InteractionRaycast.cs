@@ -36,7 +36,7 @@ public class InteractionRaycast : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, interactionDistance))
         {
-            currentInteractable = hit.collider.GetComponent<IInteractable>();
+            currentInteractable = hit.collider.GetComponentInParent<IInteractable>();
 
             if (currentInteractable != null)
             {
