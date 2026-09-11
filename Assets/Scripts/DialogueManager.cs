@@ -47,8 +47,7 @@ public class DialogueManager : MonoBehaviour
         if (!isDialogueActive)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Space) ||
-            Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             ShowNextLine();
         }

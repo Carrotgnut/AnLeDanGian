@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class NPCDialogue : MonoBehaviour, IInteractable
 {
@@ -11,10 +9,20 @@ public class NPCDialogue : MonoBehaviour, IInteractable
     [Header("Animation")]
     [SerializeField] private Animator animator;
 
+    [Header("Interaction Cooldown")]
+    [SerializeField] private float reinteractDelay = 1f;
+
     private bool isTalking;
+    private float nextAllowedInteractionTime;
 
     public void Interact()
     {
+        // Không cho tương tác lại trong thời gian cooldown
+        if (Time.time < nextAllowedInteractionTime)
+        {
+            return;
+        }
+
         if (dialogueManager == null)
         {
             Debug.LogError("NPCDialogue: Chưa gán DialogueManager!");
@@ -39,6 +47,9 @@ public class NPCDialogue : MonoBehaviour, IInteractable
     public void StopTalking()
     {
         isTalking = false;
+
+        // Bắt đầu thời gian chờ trước khi cho phép tương tác lại
+        nextAllowedInteractionTime = Time.time + reinteractDelay;
 
         if (animator != null)
         {

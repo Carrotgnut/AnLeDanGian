@@ -16,6 +16,12 @@
             "id": "ch1_003",
             "speaker": "Công nhân",
             "text": "...",
+            "nextId": "ch1_004"
+        },
+        {
+            "id": "ch1_004",
+            "speaker": "Công nhân",
+            "text": ".............",
             "nextId": ""
         }
     ]
