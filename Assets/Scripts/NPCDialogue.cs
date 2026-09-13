@@ -17,7 +17,6 @@ public class NPCDialogue : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        // Không cho tương tác lại trong thời gian cooldown
         if (Time.time < nextAllowedInteractionTime)
         {
             return;
@@ -25,11 +24,25 @@ public class NPCDialogue : MonoBehaviour, IInteractable
 
         if (dialogueManager == null)
         {
-            Debug.LogError("NPCDialogue: Chưa gán DialogueManager!");
+            Debug.LogError(
+                "NPCDialogue: Chưa gán DialogueManager."
+            );
+
             return;
         }
 
-        if (isTalking || dialogueManager.IsDialogueActive())
+        if (dialogueManager.IsDialogueActive())
+        {
+            return;
+        }
+
+        if (dialogueManager.LastDialogueEndedFrame ==
+            Time.frameCount)
+        {
+            return;
+        }
+
+        if (isTalking)
         {
             return;
         }
@@ -41,15 +54,15 @@ public class NPCDialogue : MonoBehaviour, IInteractable
             animator.SetBool("IsTalking", true);
         }
 
+        // Cô Hiền chỉ dùng DialogueManager của chapter1.json.
         dialogueManager.StartDialogue(startDialogueId);
     }
 
     public void StopTalking()
     {
         isTalking = false;
-
-        // Bắt đầu thời gian chờ trước khi cho phép tương tác lại
-        nextAllowedInteractionTime = Time.time + reinteractDelay;
+        nextAllowedInteractionTime =
+            Time.time + reinteractDelay;
 
         if (animator != null)
         {

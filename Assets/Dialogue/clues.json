@@ -1,0 +1,46 @@
+{
+  "clues": [
+    {
+      "id": "clue_001",
+      "title": "Mảnh giấy ghi giờ giao nhận",
+      "text": "6 giờ sáng. 6 giờ tối. Không được trễ.",
+      "chapter": 1,
+      "requiredForTruth": true
+    },
+    {
+      "id": "clue_002",
+      "title": "Vật dụng trẻ em cũ",
+      "text": "Món đồ đã cũ đến mức không thể biết nó từng thuộc về ai. Nhưng kích thước của nó quá nhỏ.",
+      "chapter": 1,
+      "requiredForTruth": true
+    },
+    {
+      "id": "clue_003",
+      "title": "Trang ghi chép về hai gia đình",
+      "text": "Một cái tên thuộc làng Sặt. Một cái tên thuộc Đồng Kỵ. Hai cái tên được ghi cạnh nhau trong cùng một trang.",
+      "chapter": 2,
+      "requiredForTruth": true
+    },
+    {
+      "id": "clue_004",
+      "title": "Trang giấy bị xé",
+      "text": "Phần cuối của trang giấy đã bị xé mất. Những dòng còn lại không giống với câu chuyện mà mọi người vẫn kể.",
+      "chapter": 3,
+      "requiredForTruth": true
+    },
+    {
+      "id": "clue_005",
+      "title": "Dấu tích dưới hàng cây",
+      "text": "Có thứ gì đó từng được treo ở đây. Một điểm hẹn cũ, bị thời gian và cây cỏ che lấp.",
+      "chapter": 3,
+      "requiredForTruth": true
+    },
+    {
+      "id": "clue_006",
+      "title": "Một câu ghi chép mâu thuẫn",
+      "text": "Nếu đứa trẻ chỉ chết vì lạnh, tại sao phần ghi chép này lại bị xóa đi?",
+      "chapter": 3,
+      "requiredForTruth": true
+    }
+  ]
+}

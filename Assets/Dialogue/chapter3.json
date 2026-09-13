@@ -1,0 +1,40 @@
+{
+  "dialogues": [
+    {
+      "id": "ch3_001",
+      "speaker": "Cụ Mười",
+      "text": "Ngày trước, hai người ấy từng yêu nhau. Sau khi có con, chẳng hiểu vì chuyện gì mà sinh ra bất hòa.",
+      "nextId": "ch3_002"
+    },
+    {
+      "id": "ch3_002",
+      "speaker": "Cụ Mười",
+      "text": "Ban ngày, cha giữ con. Ban đêm, mẹ đón con về. Sáng sáu giờ, chiều sáu giờ, họ gặp nhau ở dưới chân Cầu Đôi.",
+      "nextId": "ch3_003"
+    },
+    {
+      "id": "ch3_003",
+      "speaker": "Cụ Mười",
+      "text": "Một hôm trời rét, mưa gió kéo dài. Người cha vẫn đưa con đến điểm hẹn. Người mẹ lại không đến.",
+      "nextId": "ch3_004"
+    },
+    {
+      "id": "ch3_004",
+      "speaker": "Cụ Mười",
+      "text": "Đứa trẻ ở ngoài đó suốt đêm. Đến khi người ta tìm thấy, nó đã không còn nữa.",
+      "nextId": ""
+    },
+    {
+      "id": "ch3_locked_001",
+      "speaker": "Cụ Mười",
+      "text": "Con còn thiếu vài điều cần tự mình nhìn thấy.",
+      "nextId": "ch3_locked_002"
+    },
+    {
+      "id": "ch3_locked_002",
+      "speaker": "Cụ Mười",
+      "text": "Khi nào con hiểu được những dấu tích ấy, hãy quay lại đây.",
+      "nextId": ""
+    }
+  ]
+}

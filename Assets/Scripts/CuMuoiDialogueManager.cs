@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-
-public class DialogueManager : MonoBehaviour
+public class CuMuoiDialogueManager : MonoBehaviour
 {
     [Header("Events")]
     [SerializeField] private UnityEvent onDialogueEnded;
-
     [Serializable]
+
     public class DialogueLine
     {
         public string id;
@@ -24,18 +23,19 @@ public class DialogueManager : MonoBehaviour
         public DialogueLine[] dialogues;
     }
 
-    [Header("Dialogue của Cô Hiền")]
-    [SerializeField] private TextAsset dialogueJson;
-
     [Header("UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TMP_Text speakerText;
     [SerializeField] private TMP_Text dialogueText;
 
+    [Header("Cooldown")]
+    [SerializeField] private float reinteractDelay = 1f;
+
     private Dictionary<string, DialogueLine> dialogueDictionary;
     private DialogueLine currentLine;
     private bool isDialogueActive;
     private int dialogueOpenedFrame = -1;
+    private float nextAllowedStartTime;
 
     public int LastDialogueEndedFrame { get; private set; } = -1;
 
@@ -43,17 +43,6 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueDictionary =
             new Dictionary<string, DialogueLine>();
-
-        if (dialogueJson == null)
-        {
-            Debug.LogError(
-                "DialogueManager: Chưa gán chapter1.json."
-            );
-        }
-        else
-        {
-            LoadDialogue(dialogueJson);
-        }
 
         HideDialogue();
     }
@@ -65,7 +54,6 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        // Không để phím E mở thoại rồi chuyển câu ngay trong cùng frame.
         if (Time.frameCount == dialogueOpenedFrame)
         {
             return;
@@ -77,29 +65,83 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private bool LoadDialogue(TextAsset jsonFile)
+    public bool StartDialogue(
+        TextAsset dialogueJson,
+        string startId)
+    {
+        if (isDialogueActive)
+        {
+            return false;
+        }
+
+        if (Time.time < nextAllowedStartTime)
+        {
+            return false;
+        }
+
+        if (LastDialogueEndedFrame == Time.frameCount)
+        {
+            return false;
+        }
+
+        if (!LoadDialogue(dialogueJson))
+        {
+            return false;
+        }
+
+        if (!dialogueDictionary.TryGetValue(
+            startId,
+            out currentLine))
+        {
+            Debug.LogError(
+                "CuMuoiDialogueManager: Không tìm thấy ID "
+                + startId
+                + " trong "
+                + dialogueJson.name
+            );
+
+            return false;
+        }
+
+        isDialogueActive = true;
+        dialogueOpenedFrame = Time.frameCount;
+        LastDialogueEndedFrame = -1;
+
+        if (dialoguePanel != null)
+        {
+            dialoguePanel.SetActive(true);
+        }
+
+        DisplayCurrentLine();
+
+        return true;
+    }
+
+    private bool LoadDialogue(TextAsset dialogueJson)
     {
         dialogueDictionary.Clear();
 
-        if (jsonFile == null)
+        if (dialogueJson == null)
         {
             Debug.LogError(
-                "DialogueManager: File JSON bị null."
+                "CuMuoiDialogueManager: Chưa gán file JSON."
             );
 
             return false;
         }
 
         DialogueFile file =
-            JsonUtility.FromJson<DialogueFile>(jsonFile.text);
+            JsonUtility.FromJson<DialogueFile>(
+                dialogueJson.text
+            );
 
         if (file == null ||
             file.dialogues == null ||
             file.dialogues.Length == 0)
         {
             Debug.LogError(
-                "DialogueManager: JSON không hợp lệ: "
-                + jsonFile.name
+                "CuMuoiDialogueManager: JSON không hợp lệ: "
+                + dialogueJson.name
             );
 
             return false;
@@ -117,54 +159,6 @@ public class DialogueManager : MonoBehaviour
         }
 
         return dialogueDictionary.Count > 0;
-    }
-
-    // Chỉ dùng cho Cô Hiền.
-    public void StartDialogue(string startId)
-    {
-        if (isDialogueActive)
-        {
-            return;
-        }
-
-        // Chặn việc mở lại ngay trong frame vừa kết thúc.
-        if (LastDialogueEndedFrame == Time.frameCount)
-        {
-            return;
-        }
-
-        if (dialogueDictionary == null ||
-            dialogueDictionary.Count == 0)
-        {
-            Debug.LogError(
-                "DialogueManager: Chưa có dữ liệu thoại."
-            );
-
-            return;
-        }
-
-        if (!dialogueDictionary.TryGetValue(
-            startId,
-            out currentLine))
-        {
-            Debug.LogError(
-                "DialogueManager: Không tìm thấy ID "
-                + startId
-            );
-
-            return;
-        }
-
-        isDialogueActive = true;
-        dialogueOpenedFrame = Time.frameCount;
-        LastDialogueEndedFrame = -1;
-
-        if (dialoguePanel != null)
-        {
-            dialoguePanel.SetActive(true);
-        }
-
-        DisplayCurrentLine();
     }
 
     private void DisplayCurrentLine()
@@ -201,7 +195,7 @@ public class DialogueManager : MonoBehaviour
             out currentLine))
         {
             Debug.LogError(
-                "DialogueManager: Không tìm thấy ID tiếp theo "
+                "CuMuoiDialogueManager: Không tìm thấy ID tiếp theo "
                 + nextId
             );
 
@@ -217,6 +211,7 @@ public class DialogueManager : MonoBehaviour
         currentLine = null;
         isDialogueActive = false;
         LastDialogueEndedFrame = Time.frameCount;
+        nextAllowedStartTime = Time.time + reinteractDelay;
 
         HideDialogue();
 

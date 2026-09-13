@@ -1,0 +1,34 @@
+{
+  "dialogues": [
+    {
+      "id": "ch4_001",
+      "speaker": "Cụ Mười",
+      "text": "Những gì con tìm được... người xưa đã cố tình không kể lại.",
+      "nextId": "ch4_002"
+    },
+    {
+      "id": "ch4_002",
+      "speaker": "Cụ Mười",
+      "text": "Không phải vì họ quên. Mà vì có những chuyện càng nhớ rõ, người ta càng không dám nói ra.",
+      "nextId": "ch4_003"
+    },
+    {
+      "id": "ch4_003",
+      "speaker": "Cụ Mười",
+      "text": "Đứa trẻ không chỉ chết vì lạnh và mưa. Sau đó, cha mẹ nó còn giằng co vì không ai chịu buông tay.",
+      "nextId": "ch4_004"
+    },
+    {
+      "id": "ch4_004",
+      "speaker": "Cụ Mười",
+      "text": "Phần còn lại của câu chuyện đã bị người già lược bỏ qua nhiều thế hệ.",
+      "nextId": "ch4_005"
+    },
+    {
+      "id": "ch4_005",
+      "speaker": "Cụ Mười",
+      "text": "Còn lời nguyền có thật hay không... chẳng ai dám nói chắc.",
+      "nextId": ""
+    }
+  ]
+}
