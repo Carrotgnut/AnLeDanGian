@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -52,10 +52,15 @@ public class ClueManager : MonoBehaviour
 
     public void TryDiscover(string clueId)
     {
+        TryDiscover(clueId, true);
+    }
+
+    public bool TryDiscover(string clueId, bool showClueUI)
+    {
         if (database == null || database.clues == null)
         {
             Debug.LogError("ClueManager: Database chưa được nạp.");
-            return;
+            return false;
         }
 
         ClueData clue = FindClue(clueId);
@@ -63,31 +68,40 @@ public class ClueManager : MonoBehaviour
         if (clue == null)
         {
             Debug.LogError("ClueManager: Không tìm thấy clueId: " + clueId);
-            return;
+            return false;
         }
 
         if (discoveredClueIds.Contains(clueId))
         {
             Debug.Log("Clue đã được tìm trước đó: " + clueId);
 
-            if (clueUI != null)
+            if (showClueUI && clueUI != null)
             {
-                clueUI.ShowAlreadyDiscovered(clue, DiscoveredCount, RequiredClueCount());
+                clueUI.ShowAlreadyDiscovered(
+                    clue,
+                    DiscoveredCount,
+                    RequiredClueCount()
+                );
             }
 
-            return;
+            return true;
         }
 
         discoveredClueIds.Add(clueId);
 
         Debug.Log("Đã phát hiện clue: " + clueId);
 
-        if (clueUI != null)
+        if (showClueUI && clueUI != null)
         {
-            clueUI.ShowNewClue(clue, DiscoveredCount, RequiredClueCount());
+            clueUI.ShowNewClue(
+                clue,
+                DiscoveredCount,
+                RequiredClueCount()
+            );
         }
-    }
 
+        return true;
+    }
     private ClueData FindClue(string clueId)
     {
         foreach (ClueData clue in database.clues)
